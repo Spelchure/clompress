@@ -1,12 +1,76 @@
 # :file_folder: clompress
 
-Clompress is easy to use library for working with archives, compression and 
+Clompress is easy to use library for working with archives, compression and
 decompression in Clojure.
 
+## Features
 
-## Usage
+Directories are readed **recursively.**
 
-FIXME
+### Supported archives
+
+- [x] TAR `"tar"`
+- [x] ZIP `"zip"`
+
+### Supported compressions
+
+- [x] BZIP2
+- [x] GZIP
+- [x] Deflate
+- [x] Deflate64
+- [x] LZ4 (BLOCK, FRAMED)
+- [x] LZMA
+- [x] PACK200
+- [x] SNAPPY (RAW,FRAMED)
+- [x] XZ
+- [x] Z
+- [x] ZSTD
+- [x] BROTLI
+
+For available compressions:
+
+```clj
+clompress.compression/available-compressions
+```
+
+## Examples
+
+### Creating archive without compression
+
+```clj
+(clompress/archive {
+	:output-stream (clojure.java.io/output-stream "my-archive.tar")
+	:archive-type "tar"} ; for zip set :archive-type "zip"
+	"directory1/" "directory2/file1.txt" "file2.txt")
+```
+
+### Creating archive with compression `bzip2`
+
+```clj
+(clompress/archive {
+	:output-stream (clojure.java.io/output-stream "my-archive.tar.bz2")
+	:compression "bzip2"
+	:archive-type "tar"}
+	"directory1/" "directory2/file1.txt" "file2.txt")
+```
+
+### Compressing file
+
+```clj
+(clompress.compression/compress
+	(clojure.java.io/input-stream "file-to-compress.txt")
+	(clojure.java.io/output-stream "compressed-file.txt.gz")
+	"gz")
+```
+
+### Decompressing file
+
+```clj
+(clompress.compression/decompress
+	(clojure.java.io/input-stream "compressed-file.txt.gz")
+	(clojure.java.io/output-stream "decompressed-file.txt")
+	"gz")
+```
 
 ## License
 

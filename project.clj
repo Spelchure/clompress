@@ -1,4 +1,4 @@
-(defproject clompress "0.1.0-SNAPSHOT"
+(defproject org.clojars.alperenbayramoglu/clompress "0.1.0-SNAPSHOT"
   :description "Clompress is easy to use library for working with archives, compression and decompression in Clojure."
   :url "https://github.com/Spelchure/clompress"
   :license {:name "MIT"

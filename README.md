@@ -33,6 +33,22 @@ For available compressions:
 clompress.compression/available-compressions
 ```
 
+## Installation
+
+### Lein/Boot
+
+```
+[org.clojars.alperenbayramoglu/clompress "0.1.0-SNAPSHOT"]
+```
+
+### Clojure CLI/deps.edn
+
+```
+org.clojars.alperenbayramoglu/clompress {:mvn/version "0.1.0-SNAPSHOT"}
+```
+
+
+
 ## Examples
 
 ### Creating archive without compression

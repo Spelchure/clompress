@@ -2,23 +2,29 @@
   (:require [clojure.test :refer :all]
             [clompress.compression :refer :all]))
 
-(defn- string->stream
-  ([s] (string->stream s "UTF-8"))
-  ([s encoding]
-   (-> s
-       (.getBytes encoding)
-       (java.io.ByteArrayInputStream.))))
+(defn compress-then-decompress-data [data compression]
+    (with-open [input-stream (java.io.ByteArrayInputStream. (.getBytes data))
+                output-stream (java.io.ByteArrayOutputStream.)]
+      (compress input-stream output-stream compression)
+      (with-open [decompressed-stream (java.io.ByteArrayOutputStream.)]
+        (decompress (java.io.ByteArrayInputStream. (.toByteArray output-stream)) 
+                    decompressed-stream compression)
+        (.toString decompressed-stream))))
 
-(let [outputstream (java.io.ByteArrayOutputStream. 512)
-      otherstream (java.io.ByteArrayOutputStream. 512)]
-  (compress (string->stream "test") outputstream "bzip2")
-  (println (.toString outputstream)))
-  ;(decompress (string->stream (.toString outputstream))  otherstream "bzip2")
-  ;(println (.toString otherstream)))
-
-(compress (string->stream "test"))
-
-; TODO write tests !
 (deftest compression-decompression-tests
-  (testing "Compression decompression should work correctly."
-    (is (= 0 1))))
+  (testing "[BZIP2] Compression decompression should work correctly."
+    (let [data "Simple string data for testing compression."
+          compressed-decompressed-data 
+          (compress-then-decompress-data data "bzip2")]
+      (is (= data compressed-decompressed-data))))
+  (testing "[GZ] Compression decompression should work correctly."
+    (let [data "Simple string data for testing compression."
+          compressed-decompressed-data 
+          (compress-then-decompress-data data "gz")]
+      (is (= data compressed-decompressed-data))))
+  (testing "[DEFLATE] Compression decompression should work correctly."
+    (let [data "Simple string data for testing compression."
+          compressed-decompressed-data 
+          (compress-then-decompress-data data "deflate")]
+      (is (= data compressed-decompressed-data)))))
+  

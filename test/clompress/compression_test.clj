@@ -27,4 +27,9 @@
           compressed-decompressed-data 
           (compress-then-decompress-data data "deflate")]
       (is (= data compressed-decompressed-data)))))
-  
+ 
+(with-open [input-stream (java.io.ByteArrayInputStream. 
+                           (.getBytes string))]
+  (with-open [output-stream (java.io.ByteArrayOutputStream.)]
+    (clompress.compression/compress input-stream output-stream "bzip2")))
+

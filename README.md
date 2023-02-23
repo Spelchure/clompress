@@ -88,6 +88,24 @@ org.clojars.alperenbayramoglu/clompress {:mvn/version "0.1.0-SNAPSHOT"}
 	"gz")
 ```
 
+### Compressing string
+
+```clj
+(with-open [input-stream (java.io.ByteArrayInputStream. 
+                           (.getBytes "test-data"))]
+  (with-open [output-stream (java.io.ByteArrayOutputStream.)]
+    (clompress.compression/compress input-stream output-stream "bzip2")))
+```
+### Compressing string
+
+```clj
+(with-open [input-stream (java.io.ByteArrayInputStream. 
+                           (.getBytes compressed-string))]
+  (with-open [output-stream (java.io.ByteArrayOutputStream.)]
+    (clompress.compression/decompress input-stream output-stream "bzip2")
+		(.toString output-stream)))
+```
+
 ## License
 
 [Clompress is licensed under MIT license.](./LICENSE)

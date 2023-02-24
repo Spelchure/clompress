@@ -16,16 +16,13 @@ Directories are readed **recursively.**
 
 - [x] BZIP2
 - [x] GZIP
-- [x] Deflate
-- [x] Deflate64
+- [x] DEFLATE
 - [x] LZ4 (BLOCK, FRAMED)
 - [x] LZMA
 - [x] PACK200
 - [x] SNAPPY (RAW,FRAMED)
 - [x] XZ
-- [x] Z
 - [x] ZSTD
-- [x] BROTLI
 
 For available compressions:
 
@@ -46,7 +43,6 @@ clompress.compression/available-compressions
 ```
 org.clojars.alperenbayramoglu/clompress {:mvn/version "0.1.0-SNAPSHOT"}
 ```
-
 
 
 ## Examples

@@ -1,7 +1,6 @@
 (ns clompress.compression
   (:import [org.apache.commons.compress.compressors CompressorStreamFactory]
            [org.apache.commons.io IOUtils])
-  (:require [clojure.java.io :as io])
   (:gen-class))
 
 (defn with-compression [stream compressor]
@@ -26,14 +25,11 @@
 
 (def available-compressions ["bzip2" 
                              "xz"
-                             "z"
                              "zstd"
                              "pack200"
                              "snappy-raw"
                              "lzma"
                              "lz4-framed"
                              "lz4-block"
-                             "gz"
-                             "deflate64"
-                             "deflate"
-                             "br"]) 
+                             "gz"])
+                              

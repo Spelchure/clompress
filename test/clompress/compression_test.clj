@@ -26,10 +26,25 @@
     (let [data "Simple string data for testing compression."
           compressed-decompressed-data 
           (compress-then-decompress-data data "deflate")]
+      (is (= data compressed-decompressed-data))))
+  (testing "[XZ] Compression decompression should work correctly."
+    (let [data "Simple string data for testing compression."
+          compressed-decompressed-data 
+          (compress-then-decompress-data data "xz")]
+      (is (= data compressed-decompressed-data))))
+  (testing "[LZMA] Compression decompression should work correctly."
+    (let [data "Simple string data for testing compression."
+          compressed-decompressed-data 
+          (compress-then-decompress-data data "lzma")]
+      (is (= data compressed-decompressed-data))))
+  (testing "[LZ4-Framed] Compression decompression should work correctly."
+    (let [data "Simple string data for testing compression."
+          compressed-decompressed-data 
+          (compress-then-decompress-data data "lz4-framed")]
+      (is (= data compressed-decompressed-data))))
+  (testing "[LZ4-Block] Compression decompression should work correctly."
+    (let [data "Simple string data for testing compression."
+          compressed-decompressed-data 
+          (compress-then-decompress-data data "lz4-block")]
       (is (= data compressed-decompressed-data)))))
- 
-(with-open [input-stream (java.io.ByteArrayInputStream. 
-                           (.getBytes string))]
-  (with-open [output-stream (java.io.ByteArrayOutputStream.)]
-    (clompress.compression/compress input-stream output-stream "bzip2")))
 

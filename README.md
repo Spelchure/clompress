@@ -19,10 +19,7 @@ Directories are readed **recursively.**
 - [x] DEFLATE
 - [x] LZ4 (BLOCK, FRAMED)
 - [x] LZMA
-- [x] PACK200
-- [x] SNAPPY (RAW,FRAMED)
 - [x] XZ
-- [x] ZSTD
 
 For available compressions:
 
@@ -92,7 +89,7 @@ org.clojars.alperenbayramoglu/clompress {:mvn/version "0.1.0-SNAPSHOT"}
   (with-open [output-stream (java.io.ByteArrayOutputStream.)]
     (clompress.compression/compress input-stream output-stream "bzip2")))
 ```
-### Compressing string
+### Decompressing string
 
 ```clj
 (with-open [input-stream (java.io.ByteArrayInputStream. 

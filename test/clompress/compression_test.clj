@@ -47,4 +47,3 @@
           compressed-decompressed-data 
           (compress-then-decompress-data data "lz4-block")]
       (is (= data compressed-decompressed-data)))))
-

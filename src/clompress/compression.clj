@@ -25,9 +25,6 @@
 
 (def available-compressions ["bzip2" 
                              "xz"
-                             "zstd"
-                             "pack200"
-                             "snappy-raw"
                              "lzma"
                              "lz4-framed"
                              "lz4-block"

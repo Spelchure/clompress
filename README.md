@@ -32,13 +32,13 @@ clompress.compression/available-compressions
 ### Lein/Boot
 
 ```
-[org.clojars.alperenbayramoglu/clompress "0.1.0-SNAPSHOT"]
+[org.clojars.alperenbayramoglu/clompress "0.1.0"]
 ```
 
 ### Clojure CLI/deps.edn
 
 ```
-org.clojars.alperenbayramoglu/clompress {:mvn/version "0.1.0-SNAPSHOT"}
+org.clojars.alperenbayramoglu/clompress {:mvn/version "0.1.0"}
 ```
 
 

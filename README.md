@@ -1,7 +1,10 @@
 # :file_folder: clompress
 
+[![Clojars Project](https://img.shields.io/clojars/v/org.clojars.alperenbayramoglu/clompress.svg)](https://clojars.org/org.clojars.alperenbayramoglu/clompress)
+
 Clompress is easy to use library for working with archives, compression and
-decompression in Clojure.
+decompression in Clojure. Currently acts like wrapper for library _Apache
+Commons Compress_
 
 ## Features
 
@@ -40,7 +43,6 @@ clompress.compression/available-compressions
 ```
 org.clojars.alperenbayramoglu/clompress {:mvn/version "0.1.0"}
 ```
-
 
 ## Examples
 
@@ -84,15 +86,16 @@ org.clojars.alperenbayramoglu/clompress {:mvn/version "0.1.0"}
 ### Compressing string
 
 ```clj
-(with-open [input-stream (java.io.ByteArrayInputStream. 
+(with-open [input-stream (java.io.ByteArrayInputStream.
                            (.getBytes "test-data"))]
   (with-open [output-stream (java.io.ByteArrayOutputStream.)]
     (clompress.compression/compress input-stream output-stream "bzip2")))
 ```
+
 ### Decompressing string
 
 ```clj
-(with-open [input-stream (java.io.ByteArrayInputStream. 
+(with-open [input-stream (java.io.ByteArrayInputStream.
                            (.getBytes compressed-string))]
   (with-open [output-stream (java.io.ByteArrayOutputStream.)]
     (clompress.compression/decompress input-stream output-stream "bzip2")

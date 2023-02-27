@@ -40,23 +40,19 @@
       (add-path-to-archive zip-archive path get-entry-name-from-path))
     (.finish zip-archive)))
 
-
-(defn- get-output-stream [options] 
-  (let [output-stream (options :output-stream)
-        compression (options :compression)]
+(defn- get-output-stream [{:keys [output-stream compression]}] 
     (if (nil? compression)
       output-stream
-      (with-compression output-stream compression))))
+      (with-compression output-stream compression)))
 
 (defn- default-entry-name-resolver [path]
   (case (first path)
     \/ (subs path 1)
     :else path))
 
-(defn- get-entry-name-resolver [options]
-  (if-let [transformer-fn (options :entryNameResolver)]
-    transformer-fn
-    default-entry-name-resolver))
+(defn- get-entry-name-resolver [{:keys [entry-name-resolver]}]
+  (or entry-name-resolver 
+      default-entry-name-resolver))
 
 (def ^:private get-archiver
   { "tar" tar-archiver
@@ -73,4 +69,4 @@
 
 (comment archive {:archive-type "tar" 
                   :output-stream (io/output-stream "my-test.tar")} 
-         "./test-data")
+         "<absolute-path>")
